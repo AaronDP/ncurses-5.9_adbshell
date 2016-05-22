@@ -1,0 +1,16 @@
+diff -Naur -x '*.orig' -x '*.o' -x '*cache*' -x 'Makefile*' -x '*.log' -x '*.status' -x '*.po' -x POTFILES -x configure -x '*lib*' -x audit-patch -x '*.doc' ../ncurses-5.9/form/fty_num.c ./form/fty_num.c
+--- ../ncurses-5.9/form/fty_num.c	2010-01-23 15:14:36.000000000 -0600
++++ ./form/fty_num.c	2016-05-17 11:25:49.423271911 -0600
+@@ -36,6 +36,12 @@
+ 
+ MODULE_ID("$Id: fty_num.c,v 1.28 2010/01/23 21:14:36 tom Exp $")
+ 
++/* "MISSING FROM BIONIC - DEFINED TO MAKE libstdc++-v3 happy" */
++#ifdef HAVE_LOCALE_H
++#   undef HAVE_LOCALE_H
++#   define HAVE_LOCALE_H 0
++#endif
++
+ #if HAVE_LOCALE_H
+ #include <locale.h>
+ #endif
